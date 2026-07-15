@@ -5,27 +5,27 @@
 
 
 // function* createSaga(action) {
-//    let response = yield createRecord("category", action)
-//    // let response = yield createMultipleRecord ("category" , action)
+//    let response = yield createRecord("catEgory", action)
+//    // let response = yield createMultipleRecord ("catEgory" , action)
 //    yield put({ type: CREATE_CATEGORY_RED, payload: response })
 // }
 // function* getSaga(action) {
-//    let response = yield getRecord("category")
+//    let response = yield getRecord("catEgory")
 //    yield put({ type: GET_CATEGORY_RED, payload: response })
 // }
 // function* updateSaga(action) {
-//    yield updateRecord("category", action)
+//    yield updateRecord("catEgory", action)
 //    yield put({ type: UPDATE_CATEGORY_RED, payload: action.payload })
-//    //  let response = yield updateMuhltipleRecord ("category", action)
+//    //  let response = yield updateMuhltipleRecord ("catEgory", action)
 //    // yield put({ type: UPDATE_CATEGORY_RED , payload: response})
 // }
 
 // function* deleteSaga(action) {
-//    let response = yield deleteRecord("category", action)
+//    let response = yield deleteRecord("catEgory", action)
 //    yield put({ type: DELETE_CATEGORY_RED, payload: action.payload })
 // }
 
-// export default function* categorySaga() {         
+// export default function* catEgorySaga() {         
 //    yield takeEvery(CREATE_CATEGORY, createSaga)
 //    yield takeEvery(GET_CATEGORY, getSaga)
 //    yield takeEvery(UPDATE_CATEGORY, updateSaga)
@@ -38,7 +38,7 @@ import { createRecord, deleteRecord, getRecord, updateRecord } from  "./Service/
 
 function* createSaga(action) {                                          //Worker
     let response = yield createRecord("category", action)
-    // let response = yield createMultipartRecord("category", action)
+    // let response = yield createMultipartRecord("catEgory", action)
     yield put({ type: CREATE_CATEGORY_RED, payload: response })
 }
 
@@ -50,7 +50,7 @@ function* getSaga(action) {                                             //Worker
 function* updateSaga(action) {                                          //Worker
     yield updateRecord("category", action)
     yield put({ type: UPDATE_CATEGORY_RED, payload: action.payload })
-    // let response = yield updateMultipartRecord("category", action)
+    // let response = yield updateMultipartRecord("catEgory", action)
     // yield put({ type: UPDATE_CATEGORY_RED, payload: response })
 }
 

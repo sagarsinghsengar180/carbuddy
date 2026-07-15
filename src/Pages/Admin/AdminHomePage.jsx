@@ -20,7 +20,7 @@ export default function AdminHomePage() {
               </tr>
               <tr>
                 <th>phone</th>
-                <td >8466797926</td>
+                <td >6387189012</td>
               </tr>
               <tr>
                 <th>role</th>

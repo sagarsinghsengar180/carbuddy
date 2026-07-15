@@ -9,13 +9,12 @@ import ImageValidator from "../../../FormValidator/ImageValidator"
 import TextValidator from "../../../FormValidator/TextValidator"
 import AdminSidebar from "../../../Components/Admin/AdminSidebar"
 
-import { createCategory, getCategory } from "../../../Redux/ActionCreators/CategoryActionCreators"
+import { createCar, getCar } from "../../../Redux/ActionCreators/CarActionCreators"
 
-export default function AdminCreateCategoryPage() {
+export default function AdminCreateCarPage() {
 
     let [data, setData] = useState({
         name: '',
-        // keep the selected file object here (multipart upload will use it)
         pic: '',
         status: true
     })
@@ -25,16 +24,16 @@ export default function AdminCreateCategoryPage() {
     })
 
     let [show, setShow] = useState(false)
-    let CategoryStateData = useSelector(state => state.CategoryStateData)
+    let CarStateData = useSelector(state => state.CarStateData)
     let dispatch = useDispatch()
     let navigate = useNavigate()
 
     function getInputData(e) {
         let name = e.target.name
-    let value = name === "pic" ? "category/" + e.target.files[0].name : e.target.value
+    let value = name === "pic" ? "car/" + e.target.files[0].name : e.target.value
 
         // file input: store the selected File object
-        // let value = name === 'pic' ? 'category/'+ e.target.files?.length ? e.target.files[0] 
+        // let value = name === 'pic' ? 'Car/'+ e.target.files?.length ? e.target.files[0] 
             // : e.target.value
 
         setData({
@@ -49,15 +48,15 @@ export default function AdminCreateCategoryPage() {
         if (error)
             setShow(true)
         else {
-            let item = CategoryStateData.find(x => x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
+            let item =CarStateData.find(x => x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
             if (item) {
                 setShow(true)
-                setErrorMessage({ ...errorMessage, name: "category with name is already exist" })
+                setErrorMessage({ ...errorMessage, name: "Car with name is already exist" })
 
                 return
             }
             
-            dispatch(createCategory({ ...data }))
+            dispatch(createCar({ ...data }))
 
             // // dispatch multipart form-data because pic is a File
             // let formData = new FormData()
@@ -65,14 +64,14 @@ export default function AdminCreateCategoryPage() {
             // formData.append("pic", data.pic)
             // formData.append("status", data.status ? 1 : 0)
 
-            // dispatch(createCategory(formData))
+            // dispatch(createCar(formData))
 
-            navigate("/admin/category")
+            navigate("/admin/car")
         }
     }
     useEffect(() => {
-        dispatch(getCategory())
-    }, [CategoryStateData.length])
+        dispatch(getCar())
+    }, [CarStateData.length])
 
 
     return (
@@ -82,8 +81,8 @@ export default function AdminCreateCategoryPage() {
                 <div className="row" >
                     <div className="col-md-3"><AdminSidebar /></div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center'> Create Category
-                            <Link to="/admin/category/">
+                        <h5 className='bg-primary text-light text-center'> Create Car
+                            <Link to="/admin/car">
                                 <i className="bi bi-arrow-left text-light float-end"></i>
                             </Link>
                         </h5>
@@ -91,7 +90,7 @@ export default function AdminCreateCategoryPage() {
                             <div className="row">
                                 <div className="col-12 mb-3">
                                     <label >Name*</label>
-                                    <input type='text' name='name' onChange={getInputData} placeholder='category name' className={`form-control ${show && errorMessage.name ? 'border-danger' : "border-dark"}`} />
+                                    <input type='text' name='name' onChange={getInputData} placeholder='Car name' className={`form-control ${show && errorMessage.name ? 'border-danger' : "border-dark"}`} />
                                     {show && errorMessage.name ? <p className='text-danger text-capitalize'>{errorMessage.name}</p> : null}
                                 </div>
                                 <div className="col-md-6 mb-3">
@@ -100,7 +99,7 @@ export default function AdminCreateCategoryPage() {
                                     className={`form-control ${show && errorMessage.pic ? 'border-danger' : "border-dark"}`} />
                                     {show && errorMessage.pic ? <p className='text-danger text-capitalize'>{errorMessage.pic}</p> : null}
                                 </div>
-                                <div className="col-12 md-6 mb-3">
+                                <div className="col-md-6 mb-3">
                                     <label >Status*</label>
                                     <select name="status" className="form-select border-dark" onChange={getInputData}>
                                         <option value='1'>Active</option>
